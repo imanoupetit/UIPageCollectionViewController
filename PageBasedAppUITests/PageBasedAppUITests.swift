@@ -8,7 +8,7 @@ class PageBasedAppUITests: XCTestCase {
 
         continueAfterFailure = false
         XCUIApplication().launch()
-        XCUIDevice.shared().orientation = .portrait
+        XCUIDevice.shared.orientation = .portrait
     }
     
     func testCollectionViewCellSelection() {
@@ -87,7 +87,7 @@ class PageBasedAppUITests: XCTestCase {
         indicator.tap()
         expectation(for: NSPredicate(format: "exists == false"), evaluatedWith: indicator, handler: nil)
         waitForExpectations(timeout: 30, handler: nil)
-        XCUIDevice.shared().orientation = .portrait
+        XCUIDevice.shared.orientation = .portrait
         XCUIApplication().pageIndicators["page 1 of 12"].tap()
         
     }
