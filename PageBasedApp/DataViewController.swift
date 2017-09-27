@@ -3,7 +3,7 @@ import UIKit
 
 class DataViewController: UIViewController {
 
-    @IBOutlet weak var dataLabel: UILabel!
+    @IBOutlet var dataLabel: UILabel!
     var dataObject = ""
 
     override func viewDidLoad() {
