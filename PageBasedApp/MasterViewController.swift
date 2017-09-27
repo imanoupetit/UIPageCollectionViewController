@@ -3,12 +3,12 @@ import UIKit
 
 class MasterViewController: UIViewController {
     
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet var collectionView: UICollectionView!
     let monthsArray = DateFormatter().monthSymbols!
-    lazy var collectionDataSource: CollectionDataSource = {
+    lazy var collectionDataSource = {
         return CollectionDataSource(withModel: self.monthsArray)
     }()
-    lazy var pageDataSource: PageDataSource = {
+    lazy var pageDataSource = {
         return PageDataSource(model: self.monthsArray)
     }()
     
@@ -17,7 +17,6 @@ class MasterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Set self as data source and delegate for collection view
         collectionView.dataSource = collectionDataSource
         collectionView.delegate = collectionDataSource
         
@@ -38,16 +37,14 @@ class MasterViewController: UIViewController {
     // MARK: Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let controller = segue.destination as! PageViewController
-        
-        // Set controller's pageDataSource and pass model to it
-        controller.pageDataSource = pageDataSource
+        let pageViewController = segue.destination as! PageViewController
+        pageViewController.pageDataSource = pageDataSource
         
         // Pass a closure to pageDataSource: when swipe is finished on a page, update the collectionView
         let updateCollectionView = { [unowned self] (indexPath: IndexPath) -> Void in
             self.collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
         }
-        controller.pageDataSource.updateCollectionView = updateCollectionView
+        pageViewController.pageDataSource.updateCollectionView = updateCollectionView
     }
     
 }

@@ -3,7 +3,7 @@ import UIKit
 
 class CollectionViewCell: UICollectionViewCell {
     
-    @IBOutlet weak var label: UILabel!
+    @IBOutlet var label: UILabel!
     
     override var isSelected: Bool {
         didSet {
@@ -13,7 +13,7 @@ class CollectionViewCell: UICollectionViewCell {
     
     override var isHighlighted: Bool {
         didSet {
-            backgroundColor = isHighlighted ? .lightGray : .clear
+            backgroundColor = super.isHighlighted ? .lightGray : .clear
         }
     }
     
